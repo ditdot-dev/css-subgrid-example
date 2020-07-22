@@ -13,6 +13,7 @@ html {
 body {
     background-color: #EEF3F6;
     color: #222;
+    margin: 0;
 }
 
 /* MAIN GRID */
@@ -146,6 +147,7 @@ p.caption {
 
 p.caption a {
     color: #0086B3;
+    padding-bottom: 30px;
 }
 
 /* browsers without support for the subgrid feature */
