@@ -19,6 +19,7 @@ body {
 /* MAIN GRID */
 .cards-container {
     margin: 2rem auto;
+    width: 95%;
     display: grid;
     /* set display to grid to create the outer grid */
     grid-template-columns: repeat(auto-fit, [col-start] minmax(min-content, 12rem));
@@ -45,7 +46,7 @@ body {
     /* override the inherited row gap */
     background-color: #fff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    margin: 0 1rem 1rem 0;
+    margin: 0 0.5rem 1rem 0.5rem;
     padding: 1rem;
     /*padding influences the sizing of rows and columns*/
 }
