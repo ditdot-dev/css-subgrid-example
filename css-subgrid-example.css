@@ -6,6 +6,7 @@
 
 html {
     font-size: 10px;
+    font-size: clamp(10px, 3vw, 14px);
     font-family: Roboto, Arial, sans-serif;
     line-height: 1.4;
 }
@@ -22,7 +23,7 @@ body {
     width: 95%;
     display: grid;
     /* set display to grid to create the outer grid */
-    grid-template-columns: repeat(auto-fit, [col-start] minmax(min-content, 12rem));
+    grid-template-columns: repeat(2, [col-start] minmax(min-content, 14rem));
     /* create 4 explicit column tracks */
     grid-auto-rows: fit-content(10rem) minmax(10rem, 14rem) auto fit-content(4rem);
     gap: 0.5rem;
@@ -144,17 +145,17 @@ body {
 p.caption {
     text-align: center;
     font-size: 13px;
+    padding-bottom: 30px;
 }
 
 p.caption a {
-    color: #0086B3;
-    padding-bottom: 30px;
+    color: #0086B3; 
 }
 
 /* browsers without support for the subgrid feature */
 @supports not (grid-template-columns: subgrid) {
     .card {
-        grid-template-columns: 12rem 12rem;
+        grid-template-columns: repeat(2,minmax(min-content, 14rem));
         grid-template-rows: 9rem 15rem 8rem 4rem;
     }
 
@@ -170,3 +171,25 @@ p.caption a {
         align-self: end;
     }
 }
+
+@media screen and (min-width: 420px){
+    html {
+        font-size: clamp(10px, 2vw, 14px);
+    }
+    .cards-container {
+        grid-template-columns: repeat(4, [col-start] minmax(min-content, 14rem));
+    }
+}
+
+@media screen and (min-width: 1024px){
+      html {
+        font-size: clamp(10px, 1vw, 14px);
+    }
+    .cards-container {
+        grid-template-columns: repeat(8, [col-start] minmax(min-content, 14rem));
+    }
+}
+
+/*
+This example is not supported in Internet Explorer
+*/
