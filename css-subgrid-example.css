@@ -25,7 +25,7 @@ body {
     /* set display to grid to create the outer grid */
     grid-template-columns: repeat(2, [col-start] minmax(min-content, 14rem));
     /* create 4 explicit column tracks */
-    grid-auto-rows: fit-content(10rem) minmax(10rem, 14rem) auto fit-content(4rem);
+    grid-auto-rows: fit-content(10rem) minmax(10rem, 14rem) auto auto;
     gap: 0.5rem;
     /* create the gap between grid columns and rows */
     justify-content: center;
@@ -59,16 +59,17 @@ body {
     grid-row: title;
     display: grid;
     /* make it grid container to create another subgrid inside */
-    grid-template-columns: subgrid;
+    grid-template-columns: 1fr 1fr auto;
     /* create subgrid for columns to use grid column tracks of the parent */
     grid-template-rows: fit-content(6rem) fit-content(6rem);
     /* create two independent rows */
     grid-template-areas:
-        "subtitle avatar"
-        "title title";
+        "subtitle subtitle avatar"
+        "title title title";
     /* create named grid areas to place the header elements*/
     align-items: end;
     font-family: "Open Sans", Arial, sans-serif;
+    overflow-wrap: anywhere;
 }
 
 
@@ -80,15 +81,13 @@ body {
 }
 
 .card-subtitle {
-    grid-column: 1/-1;
-    grid-row: 1/2;
+    grid-area: subtitle;
     font-weight: normal;
     margin: 0;
 }
 
 .card-avatar-wrapper {
     grid-area: avatar;
-    text-align: right;
 }
 
 .card-avatar {
@@ -140,6 +139,9 @@ body {
     letter-spacing: 0.09rem;
     cursor: pointer;
     justify-self: end;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 8rem;
 }
 
 p.caption {
@@ -156,7 +158,7 @@ p.caption a {
 @supports not (grid-template-columns: subgrid) {
     .card {
         grid-template-columns: repeat(2,minmax(min-content, 14rem));
-        grid-template-rows: 9rem 15rem 8rem 4rem;
+        grid-template-rows: 9rem 15rem auto auto;
     }
 
     .card-header-wrapper,
@@ -166,13 +168,17 @@ p.caption a {
         grid-row: span 1;
     }
 
+    .card-text {
+        margin-bottom: 0;
+    }
+
     .card-button {
         grid-column: 2/-1;
         align-self: end;
     }
 }
 
-@media screen and (min-width: 420px){
+@media screen and (min-width: 480px){
     html {
         font-size: clamp(10px, 2vw, 14px);
     }
