@@ -5,8 +5,9 @@
 */
 
 html {
-    font-size: 10px;
-    font-size: clamp(10px, 3vw, 14px);
+    font-size: 12px;
+    font-size: clamp(11px, 3vw, 14px);
+    /* define flexible rem size */
     font-family: Roboto, Arial, sans-serif;
     line-height: 1.4;
 }
@@ -23,9 +24,10 @@ body {
     width: 95%;
     display: grid;
     /* set display to grid to create the outer grid */
-    grid-template-columns: repeat(2, [col-start] minmax(min-content, 14rem));
+    grid-template-columns: repeat(3, [col-start] fit-content(9rem));
     /* create 4 explicit column tracks */
-    grid-auto-rows: fit-content(10rem) minmax(10rem, 14rem) auto auto;
+    grid-auto-rows: fit-content(12rem) minmax(10rem, 14rem) auto auto;
+    /* create 4 implicit row tracks */
     gap: 0.5rem;
     /* create the gap between grid columns and rows */
     justify-content: center;
@@ -33,13 +35,13 @@ body {
 
 /* SUBGRID */
 .card {
-    grid-column: span 2;
-    /* every card spans across 2 columns of the main grid */
+    grid-column: span 3;
+    /* every card spans across 3 columns of the main grid */
     grid-row: span 4;
     /* every card spans across 4 rows of the main grid */
     display: grid;
     /* set display to grid in order to create a subgrid */
-    grid-template-columns: subgrid [card-start] [button-start][card-end button-end];
+    grid-template-columns: subgrid [card-start][button-start][col][card-end button-end];
     /* create subgrid for columns to use grid column tracks of the parent and name the column lines*/
     grid-template-rows: subgrid [title-start][title-end photo-start] [photo-end text-start] [text-end button-start] [button-end];
     /* create subgrid for rows to use row column tracks of the parent and name the row lines*/
@@ -59,7 +61,7 @@ body {
     grid-row: title;
     display: grid;
     /* make it grid container to create another subgrid inside */
-    grid-template-columns: 1fr 1fr auto;
+    grid-template-columns: subgrid;
     /* create subgrid for columns to use grid column tracks of the parent */
     grid-template-rows: fit-content(6rem) fit-content(6rem);
     /* create two independent rows */
@@ -69,7 +71,6 @@ body {
     /* create named grid areas to place the header elements*/
     align-items: end;
     font-family: "Open Sans", Arial, sans-serif;
-    overflow-wrap: anywhere;
 }
 
 
@@ -88,6 +89,8 @@ body {
 
 .card-avatar-wrapper {
     grid-area: avatar;
+    align-self: start;
+    justify-self:end;
 }
 
 .card-avatar {
@@ -110,7 +113,7 @@ body {
 }
 
 .card-text {
-    grid-column: col-start / span 2;
+    grid-column: col-start / span 3;
     /* use main grid line names*/
     grid-row: text;
     margin-bottom: 2rem;
@@ -157,7 +160,7 @@ p.caption a {
 /* browsers without support for the subgrid feature */
 @supports not (grid-template-columns: subgrid) {
     .card {
-        grid-template-columns: repeat(2,minmax(min-content, 14rem));
+        grid-template-columns: repeat(3, [col-start] fit-content(9rem));
         grid-template-rows: 9rem 15rem auto auto;
     }
 
@@ -173,26 +176,26 @@ p.caption a {
     }
 
     .card-button {
-        grid-column: 2/-1;
+        grid-column: 3/-1;
         align-self: end;
     }
 }
 
 @media screen and (min-width: 480px){
     html {
-        font-size: clamp(10px, 2vw, 14px);
+        font-size: clamp(11px, 2vw, 14px);
     }
     .cards-container {
-        grid-template-columns: repeat(4, [col-start] minmax(min-content, 14rem));
+        grid-template-columns: repeat(6, [col-start] fit-content(9rem));
     }
 }
 
 @media screen and (min-width: 1024px){
       html {
-        font-size: clamp(10px, 1vw, 14px);
+        font-size: clamp(11px, 1vw, 14px);
     }
     .cards-container {
-        grid-template-columns: repeat(8, [col-start] minmax(min-content, 14rem));
+        grid-template-columns: repeat(12, [col-start] fit-content(9rem));
     }
 }
 
