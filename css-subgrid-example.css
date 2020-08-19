@@ -20,6 +20,7 @@ body {
 
 /* MAIN GRID */
 .cards-container {
+    max-width: 1440px;
     margin: 2rem auto;
     width: 95%;
     display: grid;
@@ -179,24 +180,29 @@ p.caption a {
         grid-column: 3/-1;
         align-self: end;
     }
+    
 }
 
 @media screen and (min-width: 480px){
     html {
         font-size: clamp(11px, 2vw, 14px);
     }
+    
     .cards-container {
         grid-template-columns: repeat(6, [col-start] fit-content(9rem));
     }
+    
 }
 
 @media screen and (min-width: 1024px){
-      html {
+    html {
         font-size: clamp(11px, 1vw, 14px);
     }
+    
     .cards-container {
         grid-template-columns: repeat(12, [col-start] fit-content(9rem));
     }
+    
 }
 
 /*
